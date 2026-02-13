@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>The R.A.F.T. Formula</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Raleway', sans-serif;
+            background-color: #050a14;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #050a14;
+            color: white;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* ================= HEADER ================= */
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 20;
+        }
+
+        .logo-area img {
+            height: 30px;
+            object-fit: contain;
+        }
+
+        .nav-bar {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-item {
+            margin-left: 30px;
+            color: #8899ac;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .nav-item:hover {
+            color: #ffffff;
+        }
+
+        .nav-item.active {
+            color: #4fc3f7;
+            font-weight: 700;
+        }
+
+        /* ================= CONTENT ================= */
+
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            padding: 110px 60px 40px 60px;
+            z-index: 10;
+        }
+
+        .header-section {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .section-tag {
+            color: #4fc3f7;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 14px;
+            margin-bottom: 12px;
+            display: inline-block;
+            background-color: rgba(79, 195, 247, 0.1);
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(79, 195, 247, 0.3);
+        }
+
+        .slide-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .slide-subtitle {
+            font-size: 18px;
+            color: #b0bec5;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ================= RAFT GRID ================= */
+
+        .raft-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            flex: 1;
+            align-items: stretch;
+            margin-top: 20px;
+        }
+
+        .raft-card {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .raft-card:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .letter-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            border: 2px solid;
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .card-desc {
+            font-size: 16px;
+            color: #b0bec5;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .example-box {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 13px;
+            text-align: left;
+            border-left: 3px solid;
+        }
+
+        .example-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #90a4ae;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* RAFT COLORS */
+
+        .card-r { border-top: 4px solid #2196f3; }
+        .card-r .letter-circle { color: #2196f3; border-color: rgba(33,150,243,0.5); background: rgba(33,150,243,0.1);}
+        .card-r .example-box { border-left-color: #2196f3; }
+
+        .card-a { border-top: 4px solid #00bcd4; }
+        .card-a .letter-circle { color: #00bcd4; border-color: rgba(0,188,212,0.5); background: rgba(0,188,212,0.1);}
+        .card-a .example-box { border-left-color: #00bcd4; }
+
+        .card-f { border-top: 4px solid #7c4dff; }
+        .card-f .letter-circle { color: #7c4dff; border-color: rgba(124,77,255,0.5); background: rgba(124,77,255,0.1);}
+        .card-f .example-box { border-left-color: #7c4dff; }
+
+        .card-t { border-top: 4px solid #66bb6a; }
+        .card-t .letter-circle { color: #66bb6a; border-color: rgba(102,187,106,0.5); background: rgba(102,187,106,0.1);}
+        .card-t .example-box { border-left-color: #66bb6a; }
+
+        /* Background Grid */
+
+        .bg-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+
+        <div class="bg-grid"></div>
+
+        <!-- HEADER -->
+        <div class="header">
+            <div class="logo-area">
+                <img src="weleimg.jpeg" alt="WELE INTELLITECH">
+            </div>
+
+            <div class="nav-bar">
+                <div class="nav-item">Context</div>
+                <div class="nav-item">Applications</div>
+                <div class="nav-item active">Mastery</div>
+                <div class="nav-item">Tools</div>
+                <!-- <i class="fas fa-bars nav-item" style="font-size:18px;"></i> -->
+            </div>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="content-wrapper">
+            <div class="header-section">
+                <span class="section-tag">FRAMEWORK</span>
+                <h1 class="slide-title">The R.A.F.T. Formula</h1>
+                <p class="slide-subtitle">
+                    A structured approach to building better prompts by defining four key components
+                </p>
+            </div>
+
+            <div class="raft-grid">
+
+                <div class="raft-card card-r">
+                    <div class="letter-circle">R</div>
+                    <h3 class="card-title">Role</h3>
+                    <p class="card-desc">Who should the AI act as? Define persona, expertise level, and tone.</p>
+                    <div class="example-box">
+                        <span class="example-label">Example</span>
+                        "Act as a Senior NASA Engineer..."
+                    </div>
+                </div>
+
+                <div class="raft-card card-a">
+                    <div class="letter-circle">A</div>
+                    <h3 class="card-title">Action</h3>
+                    <p class="card-desc">What task should be performed? Use strong directive verbs.</p>
+                    <div class="example-box">
+                        <span class="example-label">Example</span>
+                        "Explain the propulsion system..."
+                    </div>
+                </div>
+
+                <div class="raft-card card-f">
+                    <div class="letter-circle">F</div>
+                    <h3 class="card-title">Format</h3>
+                    <p class="card-desc">How should the output be structured?</p>
+                    <div class="example-box">
+                        <span class="example-label">Example</span>
+                        "In a 3-column table..."
+                    </div>
+                </div>
+
+                <div class="raft-card card-t">
+                    <div class="letter-circle">T</div>
+                    <h3 class="card-title">Target</h3>
+                    <p class="card-desc">Who is the audience?</p>
+                    <div class="example-box">
+                        <span class="example-label">Example</span>
+                        "For middle school students..."
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mt-8 text-center text-gray-500 text-sm font-mono">
+                <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                TIP: Combine all four elements in every prompt for optimal results
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+</html>

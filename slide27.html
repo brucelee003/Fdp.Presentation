@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>The Augmented Educator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Raleway', sans-serif;
+            background-color: #050a14;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #050a14;
+            color: white;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1,
+        h2,
+        h3,
+        .heading-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Navigation */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;;
+            padding: 24px 40px;
+            z-index: 20;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+        }
+
+        
+        .logo-area {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-item {
+            margin-left: 30px;
+            color: #8899ac;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .nav-item.active {
+            color: #4fc3f7;
+            font-weight: 700;
+        }
+
+        /* Main Layout */
+        .main-content {
+            display: flex;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            padding: 0 80px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Quote Styling */
+        .quote-container {
+            position: relative;
+            max-width: 1000px;
+            text-align: center;
+        }
+
+        .quote-icon {
+            font-size: 80px;
+            color: #26c6da;
+            opacity: 0.2;
+            position: absolute;
+            top: -50px;
+            left: -40px;
+            z-index: 0;
+        }
+
+        .quote-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 52px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quote-highlight {
+            color: #4fc3f7;
+            display: inline-block;
+        }
+
+        .divider-line {
+            height: 4px;
+            width: 120px;
+            background-color: #00bcd4;
+            margin: 30px auto;
+            border-radius: 2px;
+        }
+
+        /* Call to Action Box */
+        .cta-box {
+            background-color: rgba(2, 136, 209, 0.1);
+            border: 1px solid rgba(2, 136, 209, 0.3);
+            border-radius: 12px;
+            padding: 24px 40px;
+            display: inline-block;
+            margin-top: 20px;
+            position: relative;
+            backdrop-filter: blur(5px);
+            min-width: 600px;
+        }
+
+        .cta-title {
+            color: #81d4fa;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .cta-text {
+            color: #e1f5fe;
+            font-size: 24px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        /* Vision Badge */
+        .vision-badge {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #050a14;
+            color: #00e676;
+            /* Green for growth/vision */
+            border: 1px solid #00e676;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            z-index: 2;
+        }
+
+        /* Background Visuals */
+        .tech-ring {
+            position: absolute;
+            border: 1px dashed rgba(79, 195, 247, 0.2);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .ring-1 {
+            width: 700px;
+            height: 700px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .ring-2 {
+            width: 900px;
+            height: 900px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.5;
+        }
+
+        .ring-3 {
+            width: 1100px;
+            height: 1100px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.3;
+        }
+
+        .floating-icon {
+            position: absolute;
+            color: rgba(79, 195, 247, 0.15);
+            font-size: 40px;
+        }
+
+        .icon-1 {
+            top: 20%;
+            left: 10%;
+            transform: rotate(-15deg);
+        }
+
+        .icon-2 {
+            bottom: 20%;
+            right: 10%;
+            transform: rotate(15deg);
+        }
+
+        .icon-3 {
+            top: 15%;
+            right: 20%;
+            font-size: 24px;
+        }
+
+        .icon-4 {
+            bottom: 15%;
+            left: 20%;
+            font-size: 32px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <!-- Background Elements -->
+        <div class="tech-ring ring-1"></div>
+        <div class="tech-ring ring-2"></div>
+        <div class="tech-ring ring-3"></div>
+        <i class="fas fa-brain floating-icon icon-1"></i>
+        <i class="fas fa-graduation-cap floating-icon icon-2"></i>
+        <i class="fas fa-lightbulb floating-icon icon-3"></i>
+        <i class="fas fa-rocket floating-icon icon-4"></i>
+        <!-- Navigation -->
+        <div class="nav-bar">
+            <div class="logo-area">
+                <img src="weleimg.jpeg" alt="WELE INTELLITECH" style="height: 30px; width: auto; object-fit: contain;">
+            </div>
+            <div style="display: flex; align-items: center;">
+            
+        </div>
+           
+        </div>
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="quote-container">
+                <div class="vision-badge">
+                    <i class="fas fa-eye mr-2"></i>THE VISION
+                </div>
+                <i class="fas fa-quote-left quote-icon"></i>
+                <h1 class="quote-text">
+                    "AI won't replace professors—<br />
+                    but <span class="quote-highlight">professors who use AI</span><br />
+                    will replace those who don't."
+                </h1>
+                <div class="divider-line"></div>
+                <div class="cta-box">
+                    <span class="cta-title">CALL TO ACTION</span>
+                    <p class="cta-text">
+                        Lead with judgment.<br />
+                        Use <span class="text-[#00e676]">"Augmented Intelligence"</span> for scale.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <div class="absolute bottom-6 left-0 width-full text-center w-full text-gray-600 text-xs font-mono">
+            THE AUGMENTED EDUCATOR | WELE INTELLITECH
+        </div>
+    </div>
+</body>
+
+</html>

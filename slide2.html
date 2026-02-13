@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>The Perfect Storm in Engineering Education</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Raleway', sans-serif;
+            background-color: #050a14;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #050a14;
+            color: white;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1,
+        h2,
+        h3,
+        .heading-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* FIXED LOGO POSITION */
+        .logo-area {
+            position: absolute;
+            top: 24px;
+            left: 40px;
+            z-index: 30;
+        }
+
+        /* Navigation */
+        .nav-bar {
+            display: flex;
+            justify-content: flex-end;
+            padding: 24px 40px;
+            z-index: 20;
+        }
+
+        .nav-item {
+            margin-left: 30px;
+            color: #8899ac;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .nav-item.active {
+            color: #4fc3f7;
+            font-weight: 700;
+        }
+
+        .main-content {
+            display: flex;
+            flex: 1;
+            padding: 0 64px 48px 64px;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .left-col {
+            flex: 0 0 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right-col {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .slide-title {
+            font-size: 48px;
+            line-height: 1.1;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: white;
+            position: relative;
+        }
+
+        .slide-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #00bcd4;
+            margin-top: 16px;
+            border-radius: 2px;
+        }
+
+        .section-tag {
+            color: #4fc3f7;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 14px;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        .storm-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #0288d1;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .storm-card:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+            transform: translateX(5px);
+            border-left-color: #00bcd4;
+        }
+
+        .card-icon {
+            color: #4fc3f7;
+            font-size: 24px;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        .card-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #e1f5fe;
+        }
+
+        .card-desc {
+            font-size: 16px;
+            color: #b0bec5;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .visual-container {
+            width: 100%;
+            height: 450px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(79, 195, 247, 0.2);
+            background: linear-gradient(135deg, #0a1628 0%, #1a2332 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .speed-visual {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .speed-item {
+            text-align: center;
+        }
+
+        .speed-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        .speed-label {
+            font-size: 18px;
+            font-weight: 600;
+            color: #b0bec5;
+            margin-bottom: 12px;
+        }
+
+        .speed-bar {
+            width: 200px;
+            height: 12px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .speed-fill {
+            height: 100%;
+            border-radius: 6px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .industry-speed {
+            background: linear-gradient(90deg, #00bcd4, #4fc3f7);
+            width: 95%;
+        }
+
+        .academic-speed {
+            background: linear-gradient(90deg, #ff9800, #ffb74d);
+            width: 45%;
+        }
+
+        .vs-divider {
+            font-size: 48px;
+            font-weight: 700;
+            color: #00bcd4;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .overlay-badge {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(5, 10, 20, 0.9);
+            padding: 12px 20px;
+            border-radius: 8px;
+            border-left: 3px solid #00bcd4;
+            backdrop-filter: blur(4px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+
+        <!-- FIXED LOGO -->
+        <div class="logo-area">
+            <img src="weleimg.jpeg" alt="WELE INTELLITECH"
+                style="height: 30px; width: auto; object-fit: contain;">
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-bar">
+            
+            <!-- <i class="fas fa-bars nav-item" style="margin-left: 20px; font-size: 18px;"></i> -->
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="left-col z-10">
+                <span class="section-tag">THE CONTEXT</span>
+                <h1 class="slide-title">The "Perfect Storm" in<br />Engineering Education</h1>
+                <p class="text-gray-400 text-lg mb-8 mt-4 leading-relaxed">
+                    Engineering faculties face unprecedented challenges as technological velocity outpaces
+                    traditional curriculum cycles.
+                </p>
+
+                <div class="storm-card">
+                    <div class="flex items-start">
+                        <div class="mr-4 mt-1">
+                            <i class="fas fa-industry card-icon"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Rapid Industry Evolution</h3>
+                            <p class="card-desc">Transition from Industry 4.0 to 5.0 requiring new skill sets faster
+                                than 4-year degree cycles can adapt.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-col z-10">
+                <div class="visual-container">
+                    <div class="speed-visual">
+                        <div class="speed-item">
+                            <div class="speed-icon">🚀</div>
+                            <div class="speed-label">INDUSTRY</div>
+                            <div class="speed-bar">
+                                <div class="speed-fill industry-speed"></div>
+                            </div>
+                        </div>
+                        <div class="vs-divider">VS</div>
+                        <div class="speed-item">
+                            <div class="speed-icon">🎓</div>
+                            <div class="speed-label">ACADEMIC</div>
+                            <div class="speed-bar">
+                                <div class="speed-fill academic-speed"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="overlay-badge">
+                        <p class="text-white font-bold m-0 text-sm font-mono">
+                            INDUSTRY VELOCITY &gt; ACADEMIC VELOCITY
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+    </div>
+</body>
+
+</html>

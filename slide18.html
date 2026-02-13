@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Skeleton-of-Thought (SoT)</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Raleway', sans-serif;
+            background-color: #050a14;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #050a14;
+            color: white;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1,
+        h2,
+        h3,
+        .heading-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Navigation */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 40px;
+            width: 100%;
+        }
+
+        .logo-area img {
+            height: 30px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-items {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-item {
+            color: #8899ac;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .nav-item:hover {
+            color: white;
+        }
+
+        .nav-item.active {
+            color: #4fc3f7;
+            font-weight: 700;
+        }
+        
+        .logo-area {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-item {
+            margin-left: 30px;
+            color: #8899ac;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .nav-item.active {
+            color: #4fc3f7;
+            font-weight: 700;
+        }
+
+        /* Main Content */
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            padding: 80px 60px 40px 60px;
+            z-index: 10;
+        }
+
+        .header-section {
+            margin-bottom: 30px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 20px;
+        }
+
+        .section-tag {
+            color: #7c4dff;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: inline-block;
+            background-color: rgba(124, 77, 255, 0.1);
+            padding: 4px 12px;
+            border-radius: 4px;
+            border: 1px solid rgba(124, 77, 255, 0.3);
+        }
+
+        .slide-title {
+            font-size: 42px;
+            line-height: 1.1;
+            font-weight: 700;
+            color: white;
+            margin: 0;
+        }
+
+        .slide-subtitle {
+            font-size: 18px;
+            color: #b0bec5;
+            margin-top: 8px;
+        }
+
+        /* Process Flow Visuals - Adapted for 3 main visual steps to represent outline -> expand -> result */
+        .process-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Centered for 3 cards */
+            margin-top: 20px;
+            flex: 1;
+            position: relative;
+            padding: 0 40px;
+        }
+
+        .step-card {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 30px 24px;
+            width: 280px;
+            /* Slightly wider since we have fewer cards */
+            height: 340px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(79, 195, 247, 0.5);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 2px solid;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .step-icon {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .step-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .step-desc {
+            font-size: 15px;
+            color: #b0bec5;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .step-code {
+            font-family: 'Space Mono', monospace;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #81d4fa;
+            margin-top: 10px;
+            border: 1px solid rgba(129, 212, 250, 0.2);
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Connecting Lines */
+        .connector {
+            flex: 1;
+            height: 2px;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin: 0 15px;
+            position: relative;
+            top: -40px;
+            max-width: 100px;
+        }
+
+        .connector::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+            border-left: 8px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Specific Step Styles */
+        /* Step 1: Outline */
+        .step-1 {
+            border-top: 4px solid #ce93d8;
+            box-shadow: 0 4px 20px rgba(206, 147, 216, 0.1);
+        }
+
+        .step-1 .step-number {
+            border-color: #ce93d8;
+            color: #ce93d8;
+        }
+
+        .step-1 .step-icon {
+            color: #ce93d8;
+        }
+
+        /* Step 2: Expand */
+        .step-2 {
+            border-top: 4px solid #ab47bc;
+            box-shadow: 0 4px 20px rgba(171, 71, 188, 0.1);
+        }
+
+        .step-2 .step-number {
+            border-color: #ab47bc;
+            color: #ab47bc;
+        }
+
+        .step-2 .step-icon {
+            color: #ab47bc;
+        }
+
+        /* Step 3: Result */
+        .step-3 {
+            border-top: 4px solid #7b1fa2;
+            box-shadow: 0 4px 20px rgba(123, 31, 162, 0.1);
+        }
+
+        .step-3 .step-number {
+            border-color: #7b1fa2;
+            color: #7b1fa2;
+        }
+
+        .step-3 .step-icon {
+            color: #7b1fa2;
+        }
+
+        /* Background */
+        .bg-dots {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .benefit-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #e0e0e0;
+            margin-right: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .benefit-badge i {
+            margin-right: 8px;
+            color: #ab47bc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <!-- Background -->
+        <div class="bg-dots"></div>
+        <!-- Navigation -->
+       <!-- NAVIGATION -->
+    <div class="nav-bar">
+        <div class="logo-area">
+            <img src="weleimg.jpeg" alt="WELE INTELLITECH">
+        </div>
+
+        <div class="nav-items">
+            <div class="nav-item">Context</div>
+            <div class="nav-item">Applications</div>
+            <div class="nav-item">Mastery</div>
+            <div class="nav-item active">Strategy</div>
+            <!-- <i class="fas fa-bars nav-item" style="font-size:18px;"></i> -->
+        </div>
+    </div>
+        <!-- Main Content -->
+        <div class="content-wrapper">
+            <div class="header-section">
+                <span class="section-tag">ADVANCED STRATEGY</span>
+                <h1 class="slide-title">Skeleton-of-Thought (SoT)</h1>
+                <p class="slide-subtitle">Managing long-form generation by defining structure before content</p>
+            </div>
+            <!-- Process Flow -->
+            <div class="process-container">
+                <!-- Step 1 -->
+                <div class="step-card step-1">
+                    <div class="step-number">1</div>
+                    <i class="fas fa-list-ul step-icon"></i>
+                    <h3 class="step-title">Generate Skeleton</h3>
+                    <p class="step-desc">Ask the AI to draft a detailed outline with headings and bullet points first,
+                        without writing full paragraphs.</p>
+                    <div class="step-code">"Draft outline for..."</div>
+                </div>
+                <!-- Connector -->
+                <div class="connector"></div>
+                <!-- Step 2 -->
+                <div class="step-card step-2">
+                    <div class="step-number">2</div>
+                    <i class="fas fa-expand-alt step-icon"></i>
+                    <h3 class="step-title">Expand Section-by-Section</h3>
+                    <p class="step-desc">Once the skeleton is approved, ask the AI to expand each bullet point into full
+                        content sequentially.</p>
+                    <div class="step-code">"Expand Section 1..."</div>
+                </div>
+                <!-- Connector -->
+                <div class="connector"></div>
+                <!-- Step 3 -->
+                <div class="step-card step-3">
+                    <div class="step-number">3</div>
+                    <i class="fas fa-check-circle step-icon"></i>
+                    <h3 class="step-title">Coherent Output</h3>
+                    <p class="step-desc">Result is a long-form document that stays strictly on topic without
+                        "hallucinating" or drifting away from the core thesis.</p>
+                    <div class="step-code">Final Document</div>
+                </div>
+            </div>
+            <!-- Usage Context Footer -->
+            <div
+                class="mt-8 flex justify-between items-center bg-gray-900 bg-opacity-40 p-4 rounded-lg border border-gray-700">
+                <div class="flex items-center">
+                    <i class="fas fa-lightbulb text-purple-400 text-xl mr-3"></i>
+                    <div>
+                        <p class="text-white font-semibold text-sm">KEY BENEFITS:</p>
+                        <div class="flex mt-1">
+                            <div class="benefit-badge"><i class="fas fa-anchor"></i> Controls Topic Drift</div>
+                            <div class="benefit-badge"><i class="fas fa-link"></i> Enhances Coherence</div>
+                            <div class="benefit-badge"><i class="fas fa-brain"></i> Improves Logic</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <p class="text-gray-500 text-xs italic">"Outline first, write second."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

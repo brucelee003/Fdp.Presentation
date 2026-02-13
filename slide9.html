@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Accelerating Your Research Workflow</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Raleway', sans-serif;
+            background-color: #050a14;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #050a14;
+            color: white;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* ================= Logo ================= */
+        .logo-area {
+            position: absolute;
+            top: 24px;
+            left: 40px;
+            z-index: 30;
+        }
+
+        .logo-area img {
+            height: 34px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* ================= Navigation ================= */
+        .nav-bar {
+            position: absolute;
+            top: 24px;
+            right: 40px;
+            display: flex;
+            z-index: 20;
+        }
+
+        .nav-item {
+            margin-left: 30px;
+            color: #8899ac;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .nav-item.active {
+            color: #4fc3f7;
+            font-weight: 700;
+        }
+
+        /* ================= Main Content ================= */
+        .main-content {
+            display: flex;
+            flex: 1;
+            padding: 120px 64px 48px 64px; /* Added top space so content doesn't overlap logo/nav */
+            gap: 48px;
+            align-items: center;
+        }
+
+        .left-col {
+            flex: 0 0 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right-col {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide-title {
+            font-size: 48px;
+            line-height: 1.1;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: white;
+        }
+
+        .slide-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #00bcd4;
+            margin-top: 16px;
+            border-radius: 2px;
+        }
+
+        .section-tag {
+            color: #4fc3f7;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 14px;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        .storm-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #0288d1;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+            transition: 0.3s;
+        }
+
+        .storm-card:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+            transform: translateX(5px);
+        }
+
+        .card-icon {
+            color: #4fc3f7;
+            font-size: 24px;
+        }
+
+        .card-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: #e1f5fe;
+        }
+
+        .card-desc {
+            font-size: 16px;
+            color: #b0bec5;
+        }
+
+        .metric-box {
+            background-color: #1a2332;
+            border: 1px solid #00bcd4;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 188, 212, 0.15);
+        }
+
+        .metric-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            color: #00bcd4;
+        }
+
+        .metric-label {
+            font-size: 18px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .metric-sub {
+            font-size: 14px;
+            color: #b0bec5;
+        }
+
+        .footer-text {
+            position: absolute;
+            bottom: 20px;
+            left: 40px;
+            font-size: 12px;
+            color: #6b7280;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+
+        <!-- Logo -->
+        <div class="logo-area">
+            <img src="weleimg.jpeg" alt="WELE INTELLITECH">
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-bar">
+            <div class="nav-item">Context</div>
+            <div class="nav-item active">Productivity</div>
+            <div class="nav-item">Mastery</div>
+            <div class="nav-item">Tools</div>
+            <!-- <i class="fas fa-bars nav-item" style="margin-left: 20px;"></i> -->
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+
+            <!-- Left -->
+            <div class="left-col">
+                <span class="section-tag">RESEARCH EFFICIENCY</span>
+                <h1 class="slide-title">Accelerating Your<br>Research Workflow</h1>
+                <p class="text-gray-400 text-lg mb-8 mt-4 leading-relaxed">
+                    Maximize your academic output by leveraging AI to streamline the literature review and discovery process.
+                </p>
+
+                <div class="storm-card">
+                    <i class="fas fa-search-plus card-icon mr-3"></i>
+                    <span class="card-title">Identify Knowledge Gaps</span>
+                    <p class="card-desc">Rapidly scan vast databases to pinpoint missing links and novel research opportunities.</p>
+                </div>
+
+                <div class="storm-card">
+                    <i class="fas fa-file-alt card-icon mr-3"></i>
+                    <span class="card-title">Summarize Key Papers</span>
+                    <p class="card-desc">Extract methodology, results, and conclusions from dozens of papers in minutes.</p>
+                </div>
+
+                <div class="storm-card">
+                    <i class="fas fa-pen-nib card-icon mr-3"></i>
+                    <span class="card-title">Draft Literature Reviews</span>
+                    <p class="card-desc">Synthesize findings into coherent narratives with citation tracking.</p>
+                </div>
+            </div>
+
+            <!-- Right -->
+            <div class="right-col">
+                <div class="metric-box">
+                    <div class="metric-value">15–20 Hours</div>
+                    <div class="metric-label">Saved Per Review</div>
+                    <div class="metric-sub">Reallocate time to experimental design & analysis</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-text">
+            WELE INTELLITECH | AI FOR EDUCATORS
+        </div>
+
+    </div>
+</body>
+
+</html>

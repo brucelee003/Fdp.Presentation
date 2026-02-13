@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Search &amp; Research Ecosystem</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Raleway', sans-serif;
+            background-color: #050a14;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #050a14;
+            color: white;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1,
+        h2,
+        h3,
+        .heading-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Navigation */
+     .nav-bar {
+    display: flex;
+    justify-content: space-between; /* changed from flex-end */
+    align-items: center;
+    padding: 18px 40px;
+}
+
+
+        .nav-item {
+            margin-left: 30px;
+            color: #8899ac;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-item.active {
+            color: #4fc3f7;
+            font-weight: 700;
+        }
+
+        /* Main Content Grid */
+        .main-content {
+            display: flex;
+            flex: 1;
+            padding: 0 64px 48px 64px;
+            gap: 48px;
+            align-items: center;
+        }
+
+        /* Left Column */
+        .left-col {
+            flex: 0 0 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Right Column */
+        .right-col {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Typography */
+        .slide-title {
+            font-size: 48px;
+            line-height: 1.1;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: white;
+            position: relative;
+        }
+
+        .slide-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #00bcd4;
+            margin-top: 16px;
+            border-radius: 2px;
+        }
+
+        .section-tag {
+            color: #4fc3f7;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 14px;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        /* Tool Cards */
+        .tool-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #0288d1;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+            transition: transform 0.3s ease;
+        }
+
+        .card-icon {
+            color: #4fc3f7;
+            font-size: 24px;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        .card-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #e1f5fe;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-desc {
+            font-size: 16px;
+            color: #b0bec5;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Tip Box */
+        .tip-box {
+            background-color: rgba(0, 188, 212, 0.1);
+            border: 1px solid #00bcd4;
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            align-items: flex-start;
+            margin-top: 10px;
+        }
+
+        .tip-icon {
+            color: #00bcd4;
+            font-size: 18px;
+            margin-right: 12px;
+            margin-top: 2px;
+        }
+
+        /* Right Image Styling */
+        .visual-container {
+            width: 100%;
+            height: 450px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(79, 195, 247, 0.2);
+            background-color: #0a1120;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Visual Representation of Search Ecosystem */
+        .ecosystem-diagram {
+            position: relative;
+            width: 80%;
+            height: 80%;
+        }
+
+        .node {
+            position: absolute;
+            background-color: #0d1b2e;
+            border: 2px solid #4fc3f7;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            box-shadow: 0 0 15px rgba(79, 195, 247, 0.3);
+            z-index: 2;
+        }
+
+        .center-node {
+            width: 120px;
+            height: 120px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-color: #00bcd4;
+            background-color: rgba(0, 188, 212, 0.1);
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .sat-node {
+            width: 90px;
+            height: 90px;
+            font-size: 12px;
+            text-align: center;
+            background-color: #050a14;
+        }
+
+        .node-1 {
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .node-2 {
+            top: 60%;
+            left: 10%;
+        }
+
+        .node-3 {
+            top: 60%;
+            right: 10%;
+        }
+
+        .connector {
+            position: absolute;
+            background-color: #263238;
+            z-index: 1;
+        }
+
+        .conn-1 {
+            width: 2px;
+            height: 80px;
+            top: 28%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .conn-2 {
+            width: 100px;
+            height: 2px;
+            top: 58%;
+            left: 28%;
+            transform: rotate(30deg);
+        }
+
+        .conn-3 {
+            width: 100px;
+            height: 2px;
+            top: 58%;
+            right: 28%;
+            transform: rotate(-30deg);
+        }
+
+        .tech-lines {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .grid-dots {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-image: radial-gradient(#4fc3f7 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .dots-tl {
+            top: 40px;
+            left: 40px;
+        }
+
+        .dots-br {
+            bottom: 40px;
+            right: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <!-- Decoration -->
+        <div class="tech-lines"></div>
+        <div class="grid-dots dots-tl"></div>
+        <div class="grid-dots dots-br"></div>
+        <!-- Navigation -->
+        <div class="nav-bar">
+
+    <!-- LEFT: Logo -->
+
+    <div class="logo-area">
+        <img src="weleimg.jpeg" alt="WELE INTELLITECH" style="height:28px; object-fit:contain;">
+    </div>
+    <!-- RIGHT: Nav Items -->
+    <div style="display:flex; align-items:center;">
+        <div class="nav-item">Strategy</div>
+        <div class="nav-item active">Tool Stack</div>
+        <div class="nav-item">NotebookLM</div>
+        <div class="nav-item">Conclusion</div>
+        <!-- <i class="fas fa-bars nav-item" style="margin-left:20px; font-size:18px;"></i> -->
+    </div>
+
+</div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Column: Content -->
+            <div class="left-col z-10">
+                <div>
+                    <span class="section-tag">THE TOOL STACK</span>
+                    <h1 class="slide-title">Search &amp; Research Ecosystem</h1>
+                    <p class="text-gray-400 text-lg mb-8 mt-4 leading-relaxed">
+                        AI-powered tools designed to streamline academic inquiry, validate sources, and accelerate
+                        discovery.
+                    </p>
+                </div>
+                <!-- Tool Cards -->
+                <div class="tool-card">
+                    <div class="flex items-start">
+                        <div class="mr-4 mt-1">
+                            <i class="fas fa-search card-icon"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Consensus <span
+                                    class="ml-2 text-xs bg-blue-900 text-blue-200 px-2 py-0.5 rounded">Evidence
+                                    Engine</span></h3>
+                            <p class="card-desc">Search engine that finds answers in research papers. Best for finding
+                                evidence-backed answers to specific questions.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="flex items-start">
+                        <div class="mr-4 mt-1">
+                            <i class="fas fa-layer-group card-icon"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Prism <span
+                                    class="ml-2 text-xs bg-green-900 text-green-200 px-2 py-0.5 rounded">Paper
+                                    Triage</span></h3>
+                            <p class="card-desc">Visualizes connections between papers and concepts. Essential for
+                                literature mapping, citation trails, and paper triage.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pro Tip -->
+                <div class="tip-box">
+                    <i class="fas fa-lightbulb tip-icon"></i>
+                    <div>
+                        <p class="text-sm text-gray-300 font-semibold mb-1">PRO TIP: THE HYBRID APPROACH</p>
+                        <p class="text-sm text-gray-400 m-0">Combine these AI tools with Google Scholar alerts to ensure
+                            comprehensive coverage of new publications while maintaining depth.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Right Column: Visual -->
+            <div class="right-col z-10">
+                <div class="visual-container">
+                    <!-- Abstract Research Ecosystem Visualization -->
+                    <div class="ecosystem-diagram">
+                        <!-- Connectors -->
+                        <div class="connector conn-1"></div>
+                        <div class="connector conn-2"></div>
+                        <div class="connector conn-3"></div>
+                        <!-- Nodes -->
+                        <div class="node center-node">
+                            <p class="m-0">Research<br />Workflow</p>
+                        </div>
+                        <div class="node sat-node node-1">
+                            <p class="m-0">Evidence<br />(Consensus)</p>
+                        </div>
+                        <div class="node sat-node node-2">
+                            <p class="m-0">Mapping<br />(Prism)</p>
+                        </div>
+                        <div class="node sat-node node-3">
+                            <p class="m-0">Alerts<br />(Scholar)</p>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-6 text-center w-full">
+                        <p class="text-blue-300 text-sm font-mono m-0">AI-AUGMENTED DISCOVERY CYCLE</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <div class="absolute bottom-6 left-16 text-gray-500 text-xs font-mono">
+            WELE INTELLITECH | AI FOR EDUCATORS
+        </div>
+    </div>
+</body>
+
+</html>

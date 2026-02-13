@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Prompting Exercise</title>
+
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Raleway', sans-serif;
+    background-color: #050a14;
+}
+
+/* SLIDE CONTAINER */
+.slide-container {
+    width: 1280px;
+    height: 720px;
+    background-color: #050a14;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+/* NAVIGATION */
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;   /* smaller padding */
+    flex-shrink: 0;       /* prevent stretching */
+}
+
+.logo-area img {
+    height: 28px;
+    object-fit: contain;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.nav-item {
+    margin-left: 25px;
+    color: #8899ac;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.nav-item.active {
+    color: #4fc3f7;
+    font-weight: 700;
+}
+
+/* CONTENT */
+.content-wrapper {
+    flex: 1;                     /* take remaining height */
+    display: flex;
+    flex-direction: column;
+    padding: 20px 60px 30px 60px; /* reduced top padding */
+}
+
+/* HEADER */
+.header-section {
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 15px;
+}
+
+.section-tag {
+    color: #4caf50;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 1px;
+    background: rgba(76,175,80,0.1);
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(76,175,80,0.3);
+}
+
+.slide-title {
+    font-size: 40px;
+    font-weight: 700;
+    margin: 5px 0 0 0;
+}
+
+.slide-subtitle {
+    font-size: 17px;
+    color: #b0bec5;
+}
+
+/* EXERCISE */
+.exercise-container {
+    display: flex;
+    gap: 40px;
+    flex: 1;
+}
+
+/* LEFT PANEL */
+.instruction-panel {
+    flex: 0 0 35%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.task-header {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #4fc3f7;
+    margin-bottom: 15px;
+}
+
+.task-desc {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #e0e0e0;
+    margin-bottom: 25px;
+}
+
+.tip-box {
+    margin-top: auto;
+    background: rgba(255,235,59,0.05);
+    border-left: 4px solid #fdd835;
+    padding: 12px;
+    border-radius: 4px;
+}
+
+.tip-title {
+    color: #fdd835;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.tip-text {
+    color: #fff9c4;
+    font-size: 13px;
+}
+
+/* RIGHT PANEL */
+.checklist-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.checklist-item {
+    background: rgba(33,150,243,0.05);
+    border: 1px solid rgba(33,150,243,0.2);
+    border-radius: 8px;
+    padding: 15px 20px;
+    display: flex;
+    transition: 0.2s ease;
+}
+
+.checklist-item:hover {
+    transform: translateX(5px);
+    background: rgba(33,150,243,0.1);
+}
+
+.check-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid #4fc3f7;
+    margin-right: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.check-number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #4fc3f7;
+}
+
+.item-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.item-desc {
+    font-size: 14px;
+    color: #b0bec5;
+}
+
+.example-pill {
+    display: inline-block;
+    margin-top: 5px;
+    background: rgba(255,255,255,0.1);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 12px;
+    color: #81d4fa;
+}
+</style>
+</head>
+
+<body>
+
+<div class="slide-container">
+
+    <!-- NAV -->
+    <div class="nav-bar">
+        <div class="logo-area">
+            <img src="weleimg.jpeg" alt="WELE INTELLITECH">
+        </div>
+
+        <div class="nav-right">
+            <div class="nav-item">Context</div>
+            <div class="nav-item">Applications</div>
+            <div class="nav-item">Mastery</div>
+            <div class="nav-item active">Strategy</div>
+            <!-- <i class="fas fa-bars nav-item" style="font-size:18px;"></i> -->
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content-wrapper">
+
+        <div class="header-section">
+            <span class="section-tag">HANDS-ON PRACTICE</span>
+            <h1 class="slide-title">Prompting Exercise</h1>
+            <p class="slide-subtitle">
+                Apply the R.A.F.T. framework to draft a high-quality prompt for your next session
+            </p>
+        </div>
+
+        <div class="exercise-container">
+
+            <!-- LEFT -->
+            <div class="instruction-panel">
+                <div class="task-header">
+                    <i class="fas fa-pen-fancy mr-3"></i> Your Task
+                </div>
+
+                <p class="task-desc">
+                    Draft one complete R.A.F.T. prompt for an upcoming lab session, assignment, or lecture preparation task.
+                </p>
+
+                <div class="tip-box">
+                    <div class="tip-title">PRO TIP</div>
+                    <div class="tip-text">
+                        Be specific with the "Format" component. Asking for a table or bulleted list saves formatting time.
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT -->
+            <div class="checklist-panel">
+
+                <div class="checklist-item">
+                    <div class="check-circle"><span class="check-number">R</span></div>
+                    <div>
+                        <div class="item-title">Define the Role</div>
+                        <div class="item-desc">Who is the AI? Set the expertise level.</div>
+                        <span class="example-pill">Act as a TA for Heat Transfer Lab</span>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="check-circle"><span class="check-number">A</span></div>
+                    <div>
+                        <div class="item-title">Specify the Action</div>
+                        <div class="item-desc">What is the core task?</div>
+                        <span class="example-pill">Design a 30-min pre-lab safety briefing</span>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="check-circle"><span class="check-number">F</span></div>
+                    <div>
+                        <div class="item-title">Choose the Format</div>
+                        <div class="item-desc">How should output look?</div>
+                        <span class="example-pill">Bulleted outline + checklist table</span>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="check-circle"><span class="check-number">T</span></div>
+                    <div>
+                        <div class="item-title">Set the Target</div>
+                        <div class="item-desc">Who is the audience?</div>
+                        <span class="example-pill">For 3rd-year ME students</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>NotebookLM - The Game Changer for Faculty</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Raleway', sans-serif;
+            background-color: #050a14;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background-color: #050a14;
+            /* Deep dark blue-black */
+            color: white;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1,
+        h2,
+        h3,
+        .heading-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Navigation */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;;
+            padding: 24px 40px;
+            z-index: 20;
+        }
+
+        
+        .logo-area {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-item {
+            margin-left: 30px;
+            color: #8899ac;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .nav-item.active {
+            color: #4fc3f7;
+            font-weight: 700;
+        }
+
+        /* Main Content Grid */
+        .main-content {
+            display: flex;
+            flex: 1;
+            padding: 0 64px 48px 64px;
+            gap: 48px;
+            align-items: center;
+        }
+
+        /* Left Column */
+        .left-col {
+            flex: 0 0 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 20px;
+        }
+
+        /* Right Column */
+        .right-col {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Typography */
+        .slide-title {
+            font-size: 48px;
+            line-height: 1.1;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: white;
+            position: relative;
+        }
+
+        .slide-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #00bcd4;
+            margin-top: 16px;
+            border-radius: 2px;
+        }
+
+        .section-tag {
+            color: #4fc3f7;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 14px;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        /* Feature Cards */
+        .feature-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #0288d1;
+            padding: 24px;
+            margin-bottom: 24px;
+            border-radius: 0 8px 8px 0;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+            transform: translateX(5px);
+            border-left-color: #00bcd4;
+        }
+
+        .card-icon {
+            color: #4fc3f7;
+            font-size: 28px;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        .card-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #e1f5fe;
+        }
+
+        .card-desc {
+            font-size: 16px;
+            color: #b0bec5;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Right Visual Styling */
+        .visual-container {
+            width: 100%;
+            height: 480px;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(79, 195, 247, 0.3);
+            background-color: #0f172a;
+        }
+
+        .notebook-interface {
+            width: 100%;
+            height: 100%;
+            background-color: #1e293b;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .interface-header {
+            height: 60px;
+            background-color: #0f172a;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .interface-sidebar {
+            width: 200px;
+            background-color: #1e293b;
+            border-right: 1px solid #334155;
+            padding: 20px;
+        }
+
+        .interface-main {
+            flex: 1;
+            background-color: #0f172a;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .source-doc {
+            background-color: #334155;
+            height: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            width: 80%;
+        }
+
+        .chat-bubble {
+            background-color: #0288d1;
+            padding: 15px;
+            border-radius: 12px 12px 12px 0;
+            color: white;
+            margin-bottom: 20px;
+            width: 80%;
+            align-self: flex-start;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+        }
+
+        .citation-badge {
+            display: inline-block;
+            background-color: #0f172a;
+            color: #4fc3f7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+            margin-left: 5px;
+            border: 1px solid #4fc3f7;
+        }
+
+        .copilot-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(0, 188, 212, 0.2);
+            color: #4fc3f7;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            border: 1px solid rgba(0, 188, 212, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Background Tech Decoration */
+        .tech-circle {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            border: 1px solid rgba(79, 195, 247, 0.05);
+            top: 50%;
+            right: -100px;
+            transform: translateY(-50%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .tech-circle::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            border: 1px dashed rgba(79, 195, 247, 0.1);
+        }
+
+        .highlight-text {
+            color: #4fc3f7;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <!-- Decoration -->
+        <div class="tech-circle"></div>
+        <!-- Navigation -->
+        <div class="nav-bar">
+            <div class="logo-area">
+                <img src="weleimg.jpeg" alt="WELE INTELLITECH" style="height: 30px; width: auto; object-fit: contain;">
+            </div>
+            <div style="display: flex; align-items: center;">
+           
+        </div>
+           
+            <!-- <i class="fas fa-bars nav-item" style="margin-left: 20px; font-size: 18px;"></i> -->
+        </div>
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Column: Content -->
+            <div class="left-col z-10">
+                <div>
+                    <span class="section-tag">DEEP DIVE</span>
+                    <h1 class="slide-title">NotebookLM: The Game Changer for Faculty</h1>
+                    <p class="text-gray-400 text-lg mb-8 mt-4 leading-relaxed">
+                        A grounded AI research assistant that transforms how you interact with your own course materials
+                        and research papers.
+                    </p>
+                </div>
+                <!-- Feature Cards -->
+                <div class="feature-card">
+                    <div class="flex items-start">
+                        <div class="mr-5 mt-1">
+                            <i class="fas fa-user-shield card-icon"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Private &amp; Secure</h3>
+                            <p class="card-desc">Your uploaded data stays within your instance. It is <span
+                                    class="highlight-text">not used to train</span> the broader model, ensuring
+                                intellectual property protection.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="flex items-start">
+                        <div class="mr-5 mt-1">
+                            <i class="fas fa-bullseye card-icon"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Accurate with Citations</h3>
+                            <p class="card-desc">Every response includes <span class="highlight-text">inline
+                                    citations</span> linking directly back to your source documents, eliminating
+                                hallucinations common in open models.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card" style="margin-bottom: 0;">
+                    <div class="flex items-start">
+                        <div class="mr-5 mt-1">
+                            <i class="fas fa-brain card-icon"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Your Expertise (Grounding)</h3>
+                            <p class="card-desc">The AI answers <span class="highlight-text">only</span> from the
+                                sources you provide (PDFs, Docs, Slides), acting as a trusted copilot grounded in your
+                                specific curriculum.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Right Column: Visual -->
+            <div class="right-col z-10">
+                <div class="visual-container">
+                    <div class="notebook-interface">
+                        <div class="interface-header">
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
+                            <div class="ml-4 text-gray-400 font-mono text-sm">NotebookLM - Advanced Thermodynamics</div>
+                        </div>
+                        <div class="flex flex-1">
+                            <div class="interface-sidebar">
+                                <div class="text-gray-400 text-xs font-bold mb-3 uppercase tracking-wider">Sources (4)
+                                </div>
+                                <div class="source-doc bg-blue-900 opacity-50 w-full mb-2"></div>
+                                <div class="source-doc bg-blue-900 opacity-40 w-3/4 mb-2"></div>
+                                <div class="source-doc bg-blue-900 opacity-30 w-5/6 mb-2"></div>
+                                <div class="source-doc bg-blue-900 opacity-20 w-4/5"></div>
+                            </div>
+                            <div class="interface-main items-start justify-start pt-8">
+                                <div class="bg-gray-800 p-4 rounded-lg mb-4 self-end w-3/4 border border-gray-700">
+                                    <p class="text-gray-300 text-sm">Summarize the key differences between Rankine and
+                                        Brayton cycles from the uploaded papers.</p>
+                                </div>
+                                <div
+                                    class="bg-blue-600 p-5 rounded-lg w-full shadow-lg border border-blue-400 relative">
+                                    <div
+                                        class="absolute -top-3 -left-3 bg-white text-blue-900 rounded-full p-1 border-2 border-blue-600">
+                                        <i class="fas fa-sparkles text-sm"></i>
+                                    </div>
+                                    <p class="text-white text-sm leading-relaxed">
+                                        Based on the provided text, the Rankine cycle is a vapor power cycle used in
+                                        steam power plants <span class="citation-badge">1</span>, while the Brayton
+                                        cycle is a gas power cycle used in gas turbines <span
+                                            class="citation-badge">2</span>. The key difference lies in the working
+                                        fluid phase change: Rankine involves phase change (liquid-vapor), whereas
+                                        Brayton operates entirely in the gas phase <span
+                                            class="citation-badge">3</span>.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="copilot-badge">
+                        <i class="fas fa-robot"></i>
+                        <span>Trusted Copilot</span>
+                    </div>
+                    <!-- Decorative overlay -->
+                    <div class="absolute inset-0 bg-blue-500 opacity-5 mix-blend-overlay pointer-events-none"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <div class="absolute bottom-6 left-16 text-gray-500 text-xs font-mono">
+            WELE INTELLITECH | AI FOR EDUCATORS
+        </div>
+    </div>
+</body>
+
+</html>
